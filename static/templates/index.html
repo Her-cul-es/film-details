@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Smooth Scroll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.6.0/smooth-scrollbar.css"/>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{% static "image/wp10615928-movie-collection-wallpapers.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .navbar-brand {
+            color: #fff !important;
+        }
+        .nav-link {
+            color: #fff !important;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">CineCraze</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white" href="{% url 'login' %}">Login</a>
+                </li> &nbsp;
+               <li class="nav-item">
+                   <a class="nav-link btn btn-primary text-white" href="{% url 'admin:index' %}">Admin_Login</a>
+               </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container text-center animate__animated animate__fadeIn">
+        <h1>Welcome to My CineCraze</h1>
+        <p>An platform for movie details</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Smooth Scroll JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.6.0/smooth-scrollbar.min.js"></script>
+    <script>
+        // Initialize smooth scrolling
+        SmoothScrollbar.init(document.body);
+
+        // Example of animating the container on load
+        $(document).ready(function() {
+            $('.container').addClass('animate__animated animate__fadeIn');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movies</title>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{% static "image/regbg.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn btn-secondary mb-3">Home</a>
+        <h1 class="text-center">My Movies</h1>
+        {% if messages %}
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                {% for message in messages %}
+                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="me-auto">Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.category }}</td>
+                        <td>{{ movie.release_date }}</td>
+                        <td>
+                            <a href="{% url 'movie_detail' movie.id %}" class="btn btn-primary btn-sm">View Details</a>
+                            <a href="{% url 'edit_movie' movie.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ movie.id }}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ movie.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ movie.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ movie.id }}">Confirm Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ movie.title }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form method="post" action="{% url 'delete_movie' movie.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">You have not added any movies yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl, {});
+            });
+            toastList.forEach(toast => toast.show());
+        });
+    </script>
+</body>
+</html>

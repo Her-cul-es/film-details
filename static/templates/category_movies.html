@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Additional CSS if needed -->
+</head>
+<body>
+    <div class="container">
+        <h1>{{ category.name }}</h1>
+        <ul>
+            {% for movie in movies %}
+                <li><a href="{% url 'movie_detail' movie_id=movie.pk %}">{{ movie.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Additional JS if needed -->
+</body>
+</html>

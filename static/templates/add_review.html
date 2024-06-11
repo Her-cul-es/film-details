@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Additional CSS if needed -->
+    <style>
+        body {
+            background-image: url('{% static "image/regbg.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control,
+        .form-select {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn btn-secondary">Home</a> <!-- Home Button -->
+        <h1>Add Review for {{ movie.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="reviewText" class="form-label">Review Text</label>
+                <textarea class="form-control" id="reviewText" name="review_text" rows="5" required></textarea>
+            </div>
+            &nbsp;
+            <div class="mb-4">
+                <label for="rating" class="form-label">Rating</label>
+                <select class="form-select" id="rating" name="rating" required>
+                    <option value="" selected disabled>Select Rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Additional JS if needed -->
+</body>
+</html>

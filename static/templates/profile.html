@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{% static "image/regbg.jpg" %}');
+            color: black;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .profile-info p {
+            color: black; /* Lighter text color for readability */
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container profile-container">
+        <a href="{% url 'home' %}" class="btn btn-secondary home-button">
+            <i class="bi bi-house-door-fill"></i> Home
+        </a>
+        <img src="{% if user_profile.image %}{{ user_profile.image.url }}{% else %}{% static 'profile_images/default_profile.jpg' %}{% endif %}" alt="Profile Image" class="profile-image img-thumbnail">
+        <h2>{{ user_profile.user.username }}</h2>
+        <div class="profile-info">
+            <p><strong>First Name:</strong> {{ user_profile.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user_profile.last_name }}</p>
+            <p><strong>Email:</strong> {{ user_profile.email }}</p>
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
