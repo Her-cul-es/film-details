@@ -49,7 +49,6 @@
           <li class="nav-item pe-3">
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
               {% if request.user.is_authenticated %}
-                <span class="d-none d-md-block ps-2">{{ request.user.username }}</span>
                 <a href="{% url 'logout' %}" class="btn btn-outline-primary ms-2">Logout</a>
               {% else %}
                 <span class="d-none d-md-block ps-2">Guest</span>
@@ -101,7 +100,7 @@
                     <p class="card-text">{{ movie.description }}</p>
                     <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
                     <p><strong>Actors:</strong> {{ movie.actors }}</p>
-                    <p><strong>Categories:</strong>
+                    <p><strong>Genre:</strong>
                         {{ movie.category }}
                     </p>
                     <p><strong>Added By:</strong> {{ movie.added_by.username }}</p>

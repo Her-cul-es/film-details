@@ -28,13 +28,14 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <style>
-    .poster-container {
-        overflow: hidden;
-   }
-    .poster-container img {
-        width: 100%;
-        height: auto;
-    }
+        .poster-container {
+            height: 150px;
+            overflow: hidden;
+        }
+        .poster-container img {
+            height: 100%;
+            width: 100%;
+        }
   </style>
 </head>
 
@@ -90,12 +91,18 @@
         <span>My Movies</span>
       </a>
     </li>
+      <li class="nav-item">
+       <a class="nav-link" href="{% url 'category_movies' %}">
+        <i class="bi bi-grid"></i>
+        <span>Genres</span>
+      </a>
+    </li>
   </ul>
 </aside><!-- End Sidebar -->
 
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Movies</h1>
+    <h1> All Movies</h1>
   </div><!-- End Page Title -->
 <section class="section dashboard">
     <div class="row">

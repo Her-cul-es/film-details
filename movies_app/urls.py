@@ -15,8 +15,11 @@ urlpatterns = [
     path('<int:movie_id>/edit/', views.edit_movie, name='edit_movie'),
     path('<int:movie_id>/', views.movie_detail, name='movie_detail'),
     path('<int:movie_id>/review/', views.add_review, name='add_review'),
-    path('category/<int:category_id>/', views.category_movies, name='category_movies'),
+    path('category/', views.category_movies, name='category_movies'),
     path('my-movies/', views.user_movies, name='user_movies'),
     path('delete-movie/<int:movie_id>/', views.delete_movie, name='delete_movie'),
     path('search_result/', views.search_movies, name='search_movies'),
+    path('category/<int:category_id>/', views.category_movies, name='category_movies_with_id'),
+
+
 ]

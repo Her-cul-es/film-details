@@ -217,10 +217,18 @@ def add_review(request, movie_id):
     return render(request, 'add_review.html', {'movie': movie, 'existing_review': existing_review})
 
 
-def category_movies(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
+def category_movies(request, category_id=None):
+    categories = Category.objects.all()
+    if category_id:
+        category = get_object_or_404(Category, pk=category_id)
+    else:
+        category = categories.first()  # Select the first category if none is provided
     movies = Movie.objects.filter(category=category)
-    return render(request, 'category_movies.html', {'category': category, 'movies': movies})
+    return render(request, 'category_movies.html', {
+        'categories': categories,
+        'selected_category': category,
+        'movies': movies,
+    })
 
 @login_required
 def user_movies(request):

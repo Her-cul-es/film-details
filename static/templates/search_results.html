@@ -28,13 +28,14 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <style>
-    .poster-container {
-        overflow: hidden;
-   }
-    .poster-container img {
-        width: 100%;
-        height: auto;
-    }
+        .poster-container {
+            height: 150px;
+            overflow: hidden;
+        }
+        .poster-container img {
+            height: 100%;
+            width: 100%;
+        }
   </style>
 </head>
 
@@ -57,7 +58,6 @@
         <li class="nav-item pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
             {% if request.user.is_authenticated %}
-              <span class="d-none d-md-block ps-2">{{ request.user.username }}</span>
               <a href="{% url 'logout' %}" class="btn btn-outline-primary ms-2">Logout</a>
             {% else %}
               <span class="d-none d-md-block ps-2">Guest</span>
